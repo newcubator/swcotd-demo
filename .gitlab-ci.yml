@@ -25,20 +25,10 @@ test:
 
 build:
   stage: build
-  image: node:20.10.0
+  image: docker
+  services:
+    - docker:dind
   script:
-    - cd swcotd
-    - npm ci
-    - npm run build
-  artifacts:
-    when: always
-    paths:
-      - swcotd/.next
-    expire_in: 1 days 6 hrs
-  cache:
-    key:
-      files:
-        - swcotd/.nvmrc
-        - swcotd/package-lock.json
-    paths:
-      - swcotd/node_modules
+    - echo "$CI_JOB_TOKEN" | docker login $CI_REGISTRY -u $CI_REGISTRY_USER --password-stdin
+    - docker build -t $CI_REGISTRY_IMAGE:${CI_COMMIT_SHORT_SHA} .
+    - docker push $CI_REGISTRY_IMAGE:${CI_COMMIT_SHORT_SHA}
