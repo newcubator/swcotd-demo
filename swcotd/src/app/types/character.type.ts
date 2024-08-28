@@ -17,7 +17,7 @@ export type Character = {
     url: string;
 };
 
-export const aCharacter = (overwrites: Partial<Character> = {}) => ({
+export const aCharacter = (overwrites: Partial<Character> = {}): Character => ({
     name: 'Luke Skywalker',
     height: '172',
     mass: '77',
