@@ -19,23 +19,23 @@ export const CharacterCard = ({ character, id, species, homeworld }: CharacterCa
                 <Image src={`/people/${id}.jpg`}
                        width={200}
                        height={225}
-                       alt="{cotd.name}"
+                       alt={character.name}
                        priority />
             </div>
             <div className="px-2 py-3 md:px-4 md:py-5 flex flex-col flex-nowrap grow">
                 <h1 className="font-normal text-2xl flex justify-between self-center">
                     {character.name}
                 </h1>
-                <div className="flex gap-2 items-center mb-3 font-light self-center">
+                <section className="flex gap-2 items-center mb-3 font-light self-center" aria-label="gender and species">
                     <span>{genderSymbols[character.gender]}</span>
                     <span>
                         {species.map(({ name }) => name).join(', ')}
                     </span>
-                </div>
-                <span className="self-center mb-3 font-light">
+                </section>
+                <section className="self-center mb-3 font-light" aria-label="birth">
                     born {character.birth_year === 'unknown' ? '' : character.birth_year} on {homeworld.name}
-                </span>
-                <div className="flex flex-row flex-nowrap gap-1 self-center mb-3">
+                </section>
+                <section className="flex flex-row flex-nowrap gap-1 self-center mb-3" aria-label="body colors">
                     <svg width="80"
                          height="80"
                          viewBox="0 0 100 100"
@@ -70,9 +70,9 @@ export const CharacterCard = ({ character, id, species, homeworld }: CharacterCa
                             {character.skin_color}
                         </span>
                     </div>
-                </div>
+                </section>
 
-                <div className="flex flex-row md:gap-3 flex-nowrap w-full mt-auto md:text-lg">
+                <section className="flex flex-row md:gap-3 flex-nowrap w-full mt-auto md:text-lg" aria-label="body specs">
                     <div className="flex flex-row flex-nowrap grow justify-center items-center gap-1">
                         <svg xmlns="http://www.w3.org/2000/svg"
                              width={28}
@@ -94,7 +94,7 @@ export const CharacterCard = ({ character, id, species, homeworld }: CharacterCa
                         </svg>
                         <span>{character.mass}kg</span>
                     </div>
-                </div>
+                </section>
             </div>
         </div>
     );
