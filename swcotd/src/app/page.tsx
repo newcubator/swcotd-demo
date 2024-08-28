@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic';
 import { useMemo } from 'react';
-import { fetchPeople, getCharacter, randomCharacterId } from './api/people';
+import { fetchPeople, getCharacter, getCharacterIdOfTheDay } from './api/people';
 import { getRelated } from './api/related';
 import { CharacterCard } from './components/character-card';
 import { Character } from './types/character.type';
@@ -25,7 +25,7 @@ export default async function Cotd() {
     ), []);
 
     const firstPage = await fetchPeople();
-    const cotdId = randomCharacterId(firstPage.count)
+    const cotdId = getCharacterIdOfTheDay(firstPage.count)
     const cotd: Character = await getCharacter(cotdId);
 
     const [homeworld, ...species] = await fetchRelatedData(cotd);
