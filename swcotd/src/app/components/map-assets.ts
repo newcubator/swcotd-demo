@@ -2,7 +2,7 @@ import { Icon, type LatLngExpression } from 'leaflet';
 
 export const makePlanetMarkerIcon = (planetName: string) => {
     return new Icon({
-        iconUrl: `map/images/SmLocationImages/SM${planetName}.png`,
+        iconUrl: `map/images/SmLocationImages/Sm${planetName}.png`,
         shadowUrl: 'map/map-marker.svg',
         iconSize: [36, 36],
         shadowSize: [72, 72],
